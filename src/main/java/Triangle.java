@@ -1,5 +1,15 @@
-class Triangle {
-	public void draw() {
-		System.out.println("Drawing triangle....");
+class Triangle implements Drawable, Messanger{
+	
+
+
+	@Override
+	public String message() {
+		return "Triangle";
+	}
+
+
+	@Override
+	public void draw(Printer p) {
+		p.draw(this);		
 	}
 }

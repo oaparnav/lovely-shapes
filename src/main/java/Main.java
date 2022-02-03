@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.List;
+
 /*
  * Lovely Shapes
  * 
@@ -25,13 +28,17 @@
 
 public class Main {
   public static void main(String[] args) {
-    Circle circle = new Circle();
-    Square square = new Square();
-    Triangle triangle = new Triangle();
-
-    Canvas canvas = new Canvas();
-    canvas.draw(circle);
-    canvas.draw(square);
-    canvas.draw(triangle);
+	Drawable circle = new Circle();
+    Drawable square = new Square();
+    Drawable triangle = new Triangle();
+    
+    Drawable house = new SuperShape(Arrays.asList(square, triangle));
+    Drawable pentHouse = new SuperShape(Arrays.asList(circle, square, circle, triangle, square));
+    Drawable gardenHouse = new SuperShape(Arrays.asList(house, circle, pentHouse));
+    List<Class<? extends Drawable>>  order= Arrays.asList(Triangle.class, Square.class, Circle.class);
+    Printer printOnDevice = new PrintOnComputer(order);
+    Canvas canvas = new Canvas(gardenHouse);
+    canvas.draw(printOnDevice);
+    printOnDevice.done();
   }
 }
